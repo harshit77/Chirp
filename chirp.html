@@ -1,0 +1,33 @@
+<html>
+<body>
+    <div id="vc"></div>
+<script src="./chirp-v3.min.js"></script>
+<script src="https://public.chirp.io/wasm/latest/chirp-connect.js"></script>
+<script>
+  window.onload = function() {
+
+  const Chirp  = ChirpConnectSDK.Chirp;
+
+Chirp({
+  key: '0daF3A19b4E3bcEA42FA06DD6',
+  onStateChanged: (previous, current) => {
+    console.log(current)
+  },
+  onReceived: data => {
+    if (data.length > 0) {
+      console.log("Data Arrived",data);
+
+document.getElementById("vc").innerHTML=String.fromCharCode.apply(null, data);
+    }
+  }
+}).then(sdk => {
+  console.log(sdk);
+  var chirpValuetoSend='teri maa ki';
+  sdk.send(chirpValuetoSend);
+}).catch(console.error)
+
+  }
+
+</script>
+</body>
+</html>
