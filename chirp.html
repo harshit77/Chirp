@@ -1,6 +1,12 @@
 <html>
+<head>
+    <title>Chirp</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@posten/hedwig@8/dist/bring.css"/>
+</head>
 <body>
-    <div id="vc"></div>
+<div id="display_data"></div>
+<div id="send_data"></div>
+<div><button>Send Data</button></div>
 <script src="./chirp-v3.min.js"></script>
 <script src="https://public.chirp.io/wasm/latest/chirp-connect.js"></script>
 <script>
@@ -28,6 +34,8 @@ document.getElementById("vc").innerHTML=String.fromCharCode.apply(null, data);
 
   }
 
+
 </script>
+
 </body>
 </html>
