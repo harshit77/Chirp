@@ -4,38 +4,48 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@posten/hedwig@8/dist/bring.css"/>
 </head>
 <body>
-<div id="display_data"></div>
-<div id="send_data"></div>
-<div><button>Send Data</button></div>
+<div class="hw-container hw-container--wide">
+    <div class="hw-block hw-block--px hw-block--mt-small">
+        <label class="hw-label">
+            Enter data
+            <input id="data" class="hw-input" type="text" placeholder="Enter Data to Send" name="send-data" />
+        </label>
+        <button class="hw-button hw-button--primary" id="getData">
+            Send Data
+        </button>
+    </div>
+    <div class="hw-block hw-block--px hw-block--mt-small">
+        <label class="hw-label" id="show_data"></label>
+    </div>
+</div>
+
 <script src="./chirp-v3.min.js"></script>
 <script src="https://public.chirp.io/wasm/latest/chirp-connect.js"></script>
 <script>
-  window.onload = function() {
-
-  const {Chirp}  = ChirpConnectSDK;
-
-Chirp({
-  key: '0daF3A19b4E3bcEA42FA06DD6',
-  onStateChanged: (previous, current) => {
-    console.log(current)
-  },
-  onReceived: data => {
-    if (data.length > 0) {
-      console.log("Data Arrived",data);
-
-document.getElementById("vc").innerHTML=String.fromCharCode.apply(null, data);
+    var i=0;
+    document.getElementById("getData").addEventListener("click",function(){
+       var data_to_send = document.getElementById("data").value;
+            sendData(data_to_send,i++);
+    })
+    function sendData(data_to_send,incrementer){
+        const {Chirp}  = ChirpConnectSDK;
+        Chirp({
+          key: '0daF3A19b4E3bcEA42FA06DD6',
+          onStateChanged: (previous, current) => {
+            console.log(current)
+          },
+          onReceived: data => {
+            if (data.length > 0) {
+              console.log("Data Arrived",data);
+        document.getElementById("show_data").innerHTML=String.fromCharCode.apply(null, data);
+            }
+          }
+        }).then(sdk => {
+          console.log(sdk);
+          var send_data = data_to_send+incrementer;
+          sdk.send(send_data);
+        }).catch(console.error)
     }
-  }
-}).then(sdk => {
-  console.log(sdk);
-  var chirpValuetoSend='teri maa ki';
-  sdk.send(chirpValuetoSend);
-}).catch(console.error)
-
-  }
-
-
 </script>
-
 </body>
 </html>
