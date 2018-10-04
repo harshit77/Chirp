@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Listen Only</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@posten/hedwig@8/dist/bring.css"/>
+</head>
+<body>
+<div class="hw-container hw-container--wide">
+
+    <div class="hw-block hw-block--px hw-block--mt-small">
+        <label class="hw-label" id="show_data"></label>
+    </div>
+</div>
+
+<script src="./chirp-v3.min.js"></script>
+<script src="https://public.chirp.io/wasm/latest/chirp-connect.js"></script>
+<script>
+window.onload = function() {
+const {Chirp}  = ChirpConnectSDK;
+Chirp({
+  key: '0daF3A19b4E3bcEA42FA06DD6',
+  onStateChanged: (previous, current) => {
+  },
+  onReceived: data => {
+    if (data.length > 0) {
+      console.log("Data Arrived",data);
+      document.getElementById("show_data").innerHTML=String.fromCharCode.apply(null, data);
+    }
+  }
+}).then(sdk => {}).catch(console.error)
+}
+</script>
+<script>
+
+
+</script>
+
+</body>
+</html>
