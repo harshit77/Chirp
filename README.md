@@ -1,5 +1,5 @@
 # Chirp
-Open this URL 
+Open these URL's
 ###
 
 Send data through https://harshit77.github.io/Chirp/send.html
