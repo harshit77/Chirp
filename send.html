@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Chirp</title>
+    <title>Send Only</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@posten/hedwig@8/dist/bring.css"/>
 </head>
 <body>
@@ -14,9 +14,7 @@
             Send Data
         </button>
     </div>
-    <div class="hw-block hw-block--px hw-block--mt-small">
-        <label class="hw-label" id="show_data"></label>
-    </div>
+
 </div>
 
 <script src="./chirp-v3.min.js"></script>
@@ -24,7 +22,7 @@
 <script>
     var i=0;
     document.getElementById("getData").addEventListener("click",function(){
-       var data_to_send = document.getElementById("data").value;
+       var data_to_send a= document.getElementById("data").value;
             sendData(data_to_send,i++);
     })
     function sendData(data_to_send,incrementer){
@@ -33,12 +31,6 @@
           key: '0daF3A19b4E3bcEA42FA06DD6',
           onStateChanged: (previous, current) => {
             console.log(current)
-          },
-          onReceived: data => {
-            if (data.length > 0) {
-              console.log("Data Arrived",data);
-        document.getElementById("show_data").innerHTML=String.fromCharCode.apply(null, data);
-            }
           }
         }).then(sdk => {
           console.log(sdk);
