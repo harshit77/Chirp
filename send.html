@@ -28,12 +28,8 @@
     function sendData(data_to_send,incrementer){
         const {Chirp}  = ChirpConnectSDK;
         Chirp({
-          key: '0daF3A19b4E3bcEA42FA06DD6',
-          onStateChanged: (previous, current) => {
-            console.log(current)
-          }
+          key: '0daF3A19b4E3bcEA42FA06DD6'
         }).then(sdk => {
-          console.log(sdk);
           var send_data = data_to_send+incrementer;
           sdk.send(send_data);
         }).catch(console.error)
